@@ -1,0 +1,37 @@
+{
+  "id": "2983728",
+  "name": "tabbar",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2076288",
+      "name": " 购物车",
+      "font_class": "shoppingCart",
+      "unicode": "e899",
+      "unicode_decimal": 59545
+    },
+    {
+      "icon_id": "18629855",
+      "name": "Home",
+      "font_class": "home",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "18629861",
+      "name": "Category",
+      "font_class": "category",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "18629869",
+      "name": "Profile",
+      "font_class": "profile",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    }
+  ]
+}
