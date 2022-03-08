@@ -9,27 +9,27 @@ import { host } from "./url";
 const baseInstance = config => {
   let instance = axios.create({
     baseURL: host.base,
-    timeout: 2000
+    timeout: 2000,
   });
 
   // 请求拦截器
   instance.interceptors.request.use(
     config => {
-      console.log(config);
+      // console.log(config);
       return config;
     },
     err => {
-      console.log(err);
+      console.error(err);
     }
   );
 
   // 响应拦截
   instance.interceptors.response.use(
     res => {
-      console.log(res);
+      // console.log(res);
     },
     err => {
-      console.log(err);
+      console.error(err);
     }
   );
 
@@ -37,7 +37,7 @@ const baseInstance = config => {
 };
 
 const httpInstance = {
-  baseInstance
+  baseInstance,
 };
 
 export { httpInstance };

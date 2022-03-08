@@ -6,8 +6,12 @@ import axios from "axios";
 import { httpInstance } from "network/http";
 import { url } from "network/url";
 
+import NavBar from "./common/navbar/NavBar.vue";
+
 // 全局组件
-const component = {};
+const component = {
+  NavBar,
+};
 
 const install = (Vue) => {
   if (install.installed) return;

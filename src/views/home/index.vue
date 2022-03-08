@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <h2>首页</h2>
+  <div class="views-home">
+    <!-- <h2>首页</h2> -->
+    <NavBar class="home-nav-bar">
+      <template slot='center'>
+        购物街
+      </template>
+    </NavBar>
   </div>
 </template>
 
@@ -12,57 +17,23 @@ export default {
   methods: {},
   created() {
     console.log(process.env);
-    // 获取并发请求的结果
-    // this.$axios
-    //   .all([
-    //     this.$http.baseInstance({
-    //       url: this.$url.homeMultidata
-    //     }),
-    //     this.$http.baseInstance({
-    //       url: this.$url.homeData,
-    //       params: {
-    //         type: "sell",
-    //         page: 4
-    //       }
-    //     })
-    //   ])
-    //   .then(
-    //     this.$axios.spread((res1, res2) => {
-    //       console.log(res1, res2);
-    //     })
-    //   );
-
     this.$http
       .baseInstance({
-        url: this.$url.homeMultidata
+        url: this.$url.homeMultidata,
       })
-      .then(res => {
+      .then((res) => {
         console.log(res);
       });
-
-    // this.$axios
-    //   .all([
-    //     this.$axios({
-    //       url: this.$url.homeMultidata
-    //     }),
-    //     this.$axios({
-    //       url: this.$url.homeData,
-    //       params: {
-    //         type: "sell",
-    //         page: 4
-    //       }
-    //     })
-    //   ])
-    //   .then(
-    //     this.$axios.spread((res1, res2) => {
-    //       console.log(res1, res2);
-    //     })
-    //   );
-    // .then(result => {
-    //   console.log(result);
-    // });
-  }
+  },
 };
 </script>
 
-<style></style>
+<style lang='less'>
+.views-home {
+  .home-nav-bar {
+    background-color: #f7aeba;
+    color: #ffffff;
+    font-size: 1.3rem;
+  }
+}
+</style>
