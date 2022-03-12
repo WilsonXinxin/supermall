@@ -2,14 +2,10 @@ import axios from "axios";
 import { host } from "./url";
 
 // 基本请求服务器
-// const baseInstance = axios.create({
-//   baseURL: host.base,
-//   timeout: 2000
-// });
-const baseInstance = config => {
+export function request(config) {
   let instance = axios.create({
     baseURL: host.base,
-    timeout: 2000,
+    timeout: 5000,
   });
 
   // 请求拦截器
@@ -27,17 +23,13 @@ const baseInstance = config => {
   instance.interceptors.response.use(
     res => {
       // console.log(res);
+      return res.data;
     },
     err => {
       console.error(err);
     }
   );
 
+  // 发送真正网络请求
   return instance(config);
-};
-
-const httpInstance = {
-  baseInstance,
-};
-
-export { httpInstance };
+}

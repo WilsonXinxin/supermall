@@ -3,7 +3,7 @@ import "assets/font/iconfont.css";
 
 // 请求库
 import axios from "axios";
-import { httpInstance } from "network/http";
+import { httpInstance } from "network/request";
 import { url } from "network/url";
 
 import NavBar from "./common/navbar/NavBar.vue";
@@ -13,19 +13,19 @@ const component = {
   NavBar,
 };
 
-const install = (Vue) => {
+const install = Vue => {
   if (install.installed) return;
 
-  Object.keys(component).forEach((key) => {
+  Object.keys(component).forEach(key => {
     Vue.component(key, component[key]);
   });
 
   // 绑定全局内容 Vue.prototype.$xxx
-  Vue.prototype.$axios = axios;
-  Vue.prototype.$url = url;
+  // Vue.prototype.$axios = axios;
+  // Vue.prototype.$url = url;
   // Vue.prototype.$api.url = url;
   // Vue.prototype.$api.host = host;
-  Vue.prototype.$http = httpInstance;
+  // Vue.prototype.$http = httpInstance;
 };
 
 export default install;
