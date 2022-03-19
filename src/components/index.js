@@ -17,11 +17,6 @@ const install = Vue => {
 	});
 
 	// 绑定全局内容 Vue.prototype.$xxx
-	// Vue.prototype.$axios = axios;
-	// Vue.prototype.$url = url;
-	// Vue.prototype.$api.url = url;
-	// Vue.prototype.$api.host = host;
-	// Vue.prototype.$http = httpInstance;
 };
 
 export default install;

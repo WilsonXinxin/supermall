@@ -6,15 +6,19 @@
 		</nav-bar>
 
 		<home-swiper :banner="banner" />
+		<recommend-view :recommend="recommend" />
+		<feature />
 	</div>
 </template>
 
 <script>
 import * as api from 'network/home';
-import HomeSwiper from './childComponents/HomeSwiper.vue';
+import HomeSwiper from './childComponents/HomeSwiper';
+import RecommendView from './childComponents/RecommendView';
+import Feature from './childComponents/Feature';
 
 export default {
-	components: { HomeSwiper },
+	components: { HomeSwiper, RecommendView, Feature },
 	data() {
 		return {
 			banner: [],
@@ -53,6 +57,12 @@ export default {
 		background-color: #f7aeba;
 		color: #ffffff;
 		font-size: 1.3rem;
+
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 99999;
 	}
 }
 </style>
