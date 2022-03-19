@@ -9,6 +9,6 @@ import component from './components';
 Vue.use(component);
 
 new Vue({
-  render: (h) => h(App),
-  router,
+	render: h => h(App),
+	router,
 }).$mount('#app');
