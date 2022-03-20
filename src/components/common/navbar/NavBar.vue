@@ -11,7 +11,7 @@
 				<slot name="right" />
 			</div>
 		</div>
-		<div class="nav-bar-block"></div>
+		<!-- <div class="nav-bar-block"></div> -->
 	</div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
 		display: flex;
 		height: 44px;
 		line-height: 44px;
-		box-shadow: 0 3px 3px #dfdfdf;
+		// box-shadow: 0 1px 1px #dfdfdf;
 		// position: fixed;
 		// top: 0;
 		// left: 0;
