@@ -17,6 +17,7 @@ const install = Vue => {
 	});
 
 	// 绑定全局内容 Vue.prototype.$xxx
+	Vue.prototype.$bus = new Vue();
 };
 
 export default install;

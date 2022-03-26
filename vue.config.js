@@ -14,16 +14,6 @@ module.exports = {
 	lintOnSave: false,
 	devServer: {
 		open: true,
-		// port: 3000,
-		// proxy: {
-		// 	'/api': {
-		// 		target: 'http://localhost:3000/home',
-		// 		changeOrigin: true,
-		// 		pathRewrite: {
-		// 			'^/api': '',
-		// 		},
-		// 	},
-		// },
 		proxy: {
 			'/api': {
 				target: 'http://localhost:3000/api',
