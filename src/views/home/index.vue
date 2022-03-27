@@ -5,11 +5,11 @@
 		</nav-bar>
 		<div class="nav-bar-block"></div>
 
-		<scroll class="content" ref="scroll" :pullUpLoad="true" :probeType="3" @pullingUp="handlePullingUp">
+		<scroll class="content" ref="scroll" :pullUpLoad="true" :probeType="3" @pullingUp="handlePullingUp" @scroll="contentScroll">
 			<home-swiper :banner="banner" />
 			<recommend-view :recommend="recommend" />
 			<feature />
-			<tab-control class="tab-control" :titles="tabControl.titles" @handleClick="handleClick" />
+			<tab-control class="tab-control" :titles="tabControl.titles" @handleClick="handleClick" ref="tabControl" />
 			<goods-list :goods="goodsList" />
 		</scroll>
 	</div>
@@ -24,6 +24,8 @@ import Feature from './childComponents/Feature';
 import TabControl from 'components/content/tabControl';
 import GoodsList from 'components/content/goods/GoodsList';
 import Scroll from 'components/common/scroll';
+
+import { debounce } from 'common/utils';
 
 export default {
 	components: { HomeSwiper, RecommendView, Feature, TabControl, GoodsList, Scroll },
@@ -50,6 +52,7 @@ export default {
 			},
 			currentType: 'pop',
 			bScroll: '',
+			tabOffsetTop: 0,
 		};
 	},
 
@@ -58,10 +61,16 @@ export default {
 	},
 
 	mounted() {
-		const refresh = this.debounce(this.$refs.scroll.refresh, 200);
-		this.$bus.$on('imgLoad', () => {
+		// 上拉加载初始化
+		const refresh = debounce(this.$refs.scroll.refresh, 200);
+		this.$bus.$on('goodsListImgLoad', () => {
 			// this.$refs.scroll.refresh();
 			refresh();
+		});
+
+		// tab-control初始化
+		this.$bus.$on('swiperImgLoad', () => {
+			console.log(this.$refs.tabControl.$el.offsetTop);
 		});
 	},
 
@@ -79,17 +88,6 @@ export default {
 			}
 		},
 
-		// 防抖函数，涉及到了闭包，事件循环等知识
-		debounce(func, delay) {
-			let timer = null;
-			return function (...args) {
-				timer && clearTimeout(timer);
-				timer = setTimeout(() => {
-					func.apply(...args);
-				}, delay);
-			};
-		},
-
 		async getHomeMultidata() {
 			await api.getHomeMultidata().then(res => {
 				this.banner = res.data.banner.list;
@@ -97,16 +95,15 @@ export default {
 			});
 		},
 
-		async getHomeGoods(type) {
+		getHomeGoods(type) {
 			const _data = {
 				type,
 				page: this.goods[type].page,
 			};
-			await api.getHomeGoods(_data).then(res => {
+			api.getHomeGoods(_data).then(res => {
 				this.goods[type].list.push(...res.data.list);
 				this.goods[type].page += 1;
 			});
-			this.$refs.scroll.scroll.refresh();
 		},
 
 		handleClick(index) {
@@ -115,18 +112,19 @@ export default {
 		},
 
 		async handlePullingUp() {
-			console.log('上拉加载更多');
 			await this.getHomeGoods(this.currentType);
 			this.$refs.scroll.finishPullUp();
 		},
+
+		contentScroll(position) {},
 	},
 };
 </script>
 
 <style lang="less">
 .views-home {
-	// height: 100vh;
 	position: relative;
+	// height: 100vh;
 
 	.home-nav-bar {
 		background-color: #f7aeba;

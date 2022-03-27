@@ -19,7 +19,7 @@ export default {
 	},
 	methods: {
 		imgLoad() {
-			this.$bus.$emit('imgLoad');
+			this.$bus.$emit('goodsListImgLoad');
 		},
 	},
 };
